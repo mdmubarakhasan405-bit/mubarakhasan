@@ -426,15 +426,22 @@
         }
 
         .about-image {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.2);
-            border: 2px solid transparent;
-            background: linear-gradient(var(--dark), var(--dark)) padding-box,
-                        var(--gradient-primary) border-box;
-            animation: borderFlow 3s linear infinite;
-            transition: all 0.3s;
-        }
+    width: 100%;
+    
+    /* 1. কোণ বাঁকানো বন্ধ করে এটিকে বৃত্তাকার করুন */
+    border-radius: 50%;
+    
+    /* 2. ছবিটিকে বর্গাকার রাখতে ও ক্রপিং ঠিক করতে এই দুটি লাইন যোগ করুন */
+    aspect-ratio: 1 / 1; 
+    object-fit: cover;
+    
+    box-shadow: 0 20px 40px rgba(0, 243, 255, 0.2);
+    border: 2px solid transparent;
+    background: linear-gradient(var(--dark), var(--dark)) padding-box,
+                var(--gradient-primary) border-box;
+    animation: borderFlow 3s linear infinite;
+    transition: all 0.3s;
+}
 
         .about-image:hover {
             transform: perspective(1000px) rotateY(5deg);
@@ -891,7 +898,7 @@
             border-radius: 5px;
             font-size: 1rem;
             transition: all 0.3s;
-            color: white;
+            color: rgb(253, 255, 254);
         }
 
         .form-control:focus {
