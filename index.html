@@ -721,20 +721,33 @@
                         document.getElementById('contact-phone').textContent = data.contact.phone || '';
                         document.getElementById('contact-location').textContent = data.contact.location || '';
                         
-                        // Update social links in footer
+                        // Update social links in footer - ALL 9 PLATFORMS
                         const socialLinks = document.getElementById('social-links');
                         socialLinks.innerHTML = '';
                         
                         if (data.contact.social) {
                             Object.entries(data.contact.social).forEach(([platform, url]) => {
-                                const iconClass = platform === 'github' ? 'fab fa-github' :
-                                                 platform === 'linkedin' ? 'fab fa-linkedin' :
-                                                 platform === 'twitter' ? 'fab fa-twitter' :
-                                                 'fas fa-globe';
+                                // Define icon classes for ALL platforms
+                                const iconMap = {
+                                    'github': 'fab fa-github',
+                                    'linkedin': 'fab fa-linkedin',
+                                    'twitter': 'fab fa-twitter',
+                                    'instagram': 'fab fa-instagram',
+                                    'youtube': 'fab fa-youtube',
+                                    'tiktok': 'fab fa-tiktok',
+                                    'facebook': 'fab fa-facebook',
+                                    'whatsapp': 'fab fa-whatsapp',
+                                    'gmail': 'fas fa-envelope'
+                                };
+                                
+                                // Get the icon class, default to globe if not found
+                                const iconClass = iconMap[platform] || 'fas fa-globe';
                                 
                                 const socialLink = document.createElement('a');
                                 socialLink.href = url;
                                 socialLink.target = '_blank';
+                                socialLink.rel = 'noopener noreferrer';
+                                socialLink.title = platform.charAt(0).toUpperCase() + platform.slice(1);
                                 socialLink.innerHTML = `<i class="${iconClass}"></i>`;
                                 socialLinks.appendChild(socialLink);
                             });
